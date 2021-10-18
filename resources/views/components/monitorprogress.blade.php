@@ -1,7 +1,7 @@
 
 <div class="flex flex-between">
-    <div id="progress-label">Label</div>
-    <div id="progress-number">00%</div>
+    <div id="progress-label"></div>
+    <div id="progress-number"></div>
 </div>
 <div class="progress">
     <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -12,7 +12,7 @@
     function poll() {
 
         $.get('{{ Route('jobmonitor.poll', ['update'=>$monitorid]) }}').done(function(data) {
-            console.log(data);
+           
             $('#progress-bar').css('width', data.amount_completed + "%");
             $('#progress-label').html(data.message);
             $('#progress-number').html( Math.round(data.amount_completed, 2) + "%");
