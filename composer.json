@@ -1,0 +1,26 @@
+{
+  "name": "ascentcreative/job-monitor",
+  "description": "Monitoring of Laravel Jobs",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Ascent Creative",
+      "email": "info@ascent-creative.co.uk"
+    }
+  ],
+  "require": {
+    "doctrine/dbal": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AscentCreative\\JobMonitor\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "AscentCreative\\JobMonitor\\JobMonitorServiceProvider"
+        ]
+    }
+}
+}
