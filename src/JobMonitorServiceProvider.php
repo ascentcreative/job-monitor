@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Routing\Router;
 
+
 class JobMonitorServiceProvider extends ServiceProvider
 {
   public function register()
@@ -20,6 +21,7 @@ class JobMonitorServiceProvider extends ServiceProvider
 
   public function boot()
   {
+      $this->bootComponents();
 
     $this->loadViewsFrom(__DIR__.'/../resources/views', 'jobmonitor');
 
@@ -27,14 +29,13 @@ class JobMonitorServiceProvider extends ServiceProvider
 
     $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-    
   }
 
   
 
   // register the components
   public function bootComponents() {
-
+        Blade::component('jobmonitor-progress', 'AscentCreative\JobMonitor\Components\MonitorProgress');
   }
 
 

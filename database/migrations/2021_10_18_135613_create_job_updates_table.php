@@ -15,17 +15,14 @@ class CreateJobUpdatesTable extends Migration
     {
         Schema::create('job_updates', function (Blueprint $table) {
             $table->id();
-            $table->varchar('monitor_id', 10);
+            $table->string('monitor_id', 20);
             $table->string('message');
             $table->float('amount_completed');
             $table->float('total');
             $table->string('unit');
+            $table->integer('is_complete');
             $table->timestamps();
         });
-
-
-
-
 
     }
 
