@@ -21,6 +21,13 @@
                 window.clearInterval($handle);
                 $('body').trigger('job_complete');
             }
+
+            if (data.is_error == 1) {
+                window.clearInterval($handle);
+                $('body').trigger('job_failed');
+            }
+
+
         });
 
     }

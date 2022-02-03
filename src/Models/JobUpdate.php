@@ -9,7 +9,7 @@ class JobUpdate extends Model {
 
     use HasFactory;
 
-    public $fillable = ['monitor_id', 'message', 'amount_completed', 'total', 'unit', 'is_complete'];
+    public $fillable = ['monitor_id', 'message', 'amount_completed', 'total', 'unit', 'is_complete', 'is_error'];
 
     //public $visible = ['message', 'is_complete', 'percent_complete'];
 

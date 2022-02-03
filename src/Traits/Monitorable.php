@@ -51,6 +51,20 @@ trait Monitorable {
 
     }
 
+    public function monitorFail($msg) {
+
+        JobUpdate::updateOrCreate(
+            [
+                'monitor_id' => $this->getMonitorId(),
+            ],
+            [
+                'message'=>$msg,
+                'is_error' => true
+
+        ]);
+
+    }
+
     public function getMonitorId() {
 
         if (is_null($this->_monitor_id)) {
@@ -59,6 +73,8 @@ trait Monitorable {
 
         return $this->_monitor_id;
     }
+
+
 
 
 }
