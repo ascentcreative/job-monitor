@@ -34,7 +34,7 @@
 
     $handle = window.setInterval(() => {
         poll();
-    }, 250);
+    }, {{ $freq ?? 250 }});
 
     poll();
 

@@ -8,6 +8,8 @@ class MonitorProgress extends Component
 {
 
     public $monitorid;
+
+    public $freq;
    
 
     /**
@@ -15,9 +17,11 @@ class MonitorProgress extends Component
      *
      * @return void
      */
-    public function __construct($monitorid)
+    public function __construct($monitorid, $freq=null)
     {
         $this->monitorid = $monitorid;
+
+        $this->freq = $freq;
        
     }
 
