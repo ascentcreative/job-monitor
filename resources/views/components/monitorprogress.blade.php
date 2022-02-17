@@ -8,16 +8,6 @@
 </div>
 
 
-{{-- 
-    
-    Need to update this script.
-
-    Currently, if the freq is too low, it will fire off requests before the previous ones have completed, causing a cascade of processes on the server.
-
-    Instead, it should poll, wait for a response and then set a short TimeOut (single shot) which polls again.
-    
-    
-    --}}
 <script>
 
     function poll() {
@@ -29,29 +19,23 @@
             $('#progress-number').html( Math.round(data.amount_completed, 2) + "%");
 
             if (data.is_complete == 1) {
-               // window.clearInterval($handle);
                 $('body').trigger('job_complete');
                 return;
             }
 
             if (data.is_error == 1) {
-               // window.clearInterval($handle);
                 $('body').trigger('job_failed');
                 return;
             }
 
-            // no completion messages, re-poll in 100ms;
-            window.setTimeout(poll, 100);
+            // no completion messages, re-poll in 100ms (or $freq);
+            window.setTimeout(poll, {{ $freq ?? 100 }});
 
 
         });
 
     }
 
-    // $handle = window.setInterval(() => {
-    // $handle = wind
-        // poll();
-    //}, {{ $freq ?? 250 }});
 
     poll();
 
