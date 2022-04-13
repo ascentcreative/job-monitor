@@ -37,7 +37,7 @@ trait Monitorable {
 
     }
 
-    public function monitorComplete($msg) {
+    public function monitorComplete($msg, array $payload = null) {
 
         JobUpdate::updateOrCreate(
             [
@@ -45,7 +45,8 @@ trait Monitorable {
             ],
             [
                 'message'=>$msg,
-                'is_complete' => true
+                'is_complete' => true,
+                'payload' => $payload,
 
         ]);
 
