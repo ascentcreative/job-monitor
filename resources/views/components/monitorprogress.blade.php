@@ -39,6 +39,8 @@
 
         $.get('{{ Route('jobmonitor.poll', ['update'=>$monitorid]) }}').done(function(data) {
            
+            console.log(data);
+
             $('#progress-bar').css('width', data.amount_completed + "%");
             $('#progress-label').html(data.message);
             $('#progress-number').html( Math.round(data.amount_completed, 2) + "%");
@@ -48,6 +50,13 @@
                 $('.jm-complete .message').html(data.message);
                 $('.jm-complete').show();
                 $('.jm-working').hide();
+
+                if(data.payload) {
+                    $('.jm-working').trigger('job_complete', $.parseJSON(data.payload));
+                } else {
+                    $('.jm-working').trigger('job_complete');
+                }
+                
                 return;
             }
 
