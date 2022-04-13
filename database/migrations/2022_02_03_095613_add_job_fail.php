@@ -29,6 +29,8 @@ class AddJobFail extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('is_error');
+        Schema::table('job_updates', function (Blueprint $table) {
+            $table->dropColumn('is_error');
+        });
     }
 }
