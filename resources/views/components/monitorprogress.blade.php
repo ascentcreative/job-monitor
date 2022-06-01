@@ -44,8 +44,20 @@
 
 </div>
 
+<style>
+    .notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+    }
+
+</style>
 
 <script>
+
+    var last_sub = 0;
 
     function poll() {
 
@@ -60,9 +72,24 @@
 
             if(data.sub_total) {
                 $('.sub-progress').show();
+
+                $("#sub-progress-bar").removeClass("notransition");
+                
+                console.log(last_sub + " vs " + data.sub_percent_complete);
+                if(data.sub_percent_complete < last_sub) {
+                    console.log('no transition')
+                    $("#sub-progress-bar").addClass("notransition");
+                } else {
+                    console.log('allow transition');
+                }
+
                 $('#sub-progress-bar').css('width', data.sub_percent_complete + "%");
                 $('#sub-progress-label').html(data.sub_message);
                 $('#sub-progress-number').html( Math.round(data.sub_percent_complete, 2) + "%");
+                
+
+                last_sub = data.sub_percent_complete;
+                
             }
            
 
@@ -83,7 +110,7 @@
 
             if (data.is_error == 1) {
                 // $('body').trigger('job_failed');
-                $('.jm-failed .message').html(data.message);
+                $('.jm-failed .message').html(data.message_html);
                 $('.jm-failed').show();
                 $('.jm-working').hide();
                 return;

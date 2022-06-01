@@ -18,7 +18,7 @@
 
     <div class="working">    
 
-        <x-jobmonitor-progress monitorid="{{ $monitor_id }}" freq="500" />
+        <x-jobmonitor-progress monitorid="{{ $monitor_id }}" freq="{{ $freq ?? 500 }}" />
         
     </div>
 

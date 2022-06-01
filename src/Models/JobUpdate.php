@@ -15,7 +15,7 @@ class JobUpdate extends Model {
 
     //public $visible = ['message', 'is_complete', 'percent_complete'];
 
-    public $appends = ['percent_complete', 'sub_percent_complete'];
+    public $appends = ['percent_complete', 'sub_percent_complete', 'message_html'];
 
     public function getPercentCompleteAttribute() {
         
@@ -37,6 +37,10 @@ class JobUpdate extends Model {
         }
         
         return ($this->sub_amount_completed / $this->sub_total) * 100;
+    }
+
+    public function getMessageHtmlAttribute() {
+        return nl2br($this->message);
     }
 
 }
