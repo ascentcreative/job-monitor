@@ -23,7 +23,11 @@ trait Monitorable {
 
     }
 
-    public function updateMonitor($msg, $amount) {
+    public function updateMonitor($msg, $amount, $total=null) {
+
+        if(!is_null($total)) {
+            $amount = ($amount / $total) * 100;
+        }
 
         JobUpdate::updateOrCreate(
             [
@@ -32,6 +36,41 @@ trait Monitorable {
             [
                 'message'=>$msg,
                 'amount_completed'=>$amount,
+
+        ]);
+
+    }
+
+
+    public function startSubMonitor($total=100, $unit='%') {
+
+        JobUpdate::updateOrCreate(
+            [
+                'monitor_id' => $this->getMonitorId(),
+            ],
+            [
+                'sub_message'=>'',
+                'sub_amount_completed'=>0,
+                'sub_total' => $total,
+                'sub_unit' => $unit
+
+        ]);
+
+   }
+
+    public function updateSubMonitor($msg, $amount, $total=null) {
+
+        if(!is_null($total)) {
+            $amount = ($amount / $total) * 100;
+        }
+
+        JobUpdate::updateOrCreate(
+            [
+                'monitor_id' => $this->getMonitorId(),
+            ],
+            [
+                'sub_message'=>$msg,
+                'sub_amount_completed'=>$amount,
 
         ]);
 

@@ -8,6 +8,18 @@
     <div class="progress">
         <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
+
+    <div class="sub-progress" style="display: none">
+        <div class="flex flex-between mt-2">
+            <div id="sub-progress-label"></div>
+            <div id="sub-progress-number"></div>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="sub-progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+
 </div>
 
 <div class="jm-complete" style="display: none">
@@ -44,6 +56,15 @@
             $('#progress-bar').css('width', data.amount_completed + "%");
             $('#progress-label').html(data.message);
             $('#progress-number').html( Math.round(data.amount_completed, 2) + "%");
+
+
+            if(data.sub_total) {
+                $('.sub-progress').show();
+                $('#sub-progress-bar').css('width', data.sub_percent_complete + "%");
+                $('#sub-progress-label').html(data.sub_message);
+                $('#sub-progress-number').html( Math.round(data.sub_percent_complete, 2) + "%");
+            }
+           
 
             if (data.is_complete == 1) {
                 // $('body').trigger('job_complete');

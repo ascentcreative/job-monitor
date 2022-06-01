@@ -14,6 +14,7 @@ class CreateJobUpdatesTable extends Migration
     public function up()
     {
         Schema::create('job_updates', function (Blueprint $table) {
+            $table->engine = 'MyISAM'; // required to keep updates flowing during a DB transaction
             $table->id();
             $table->string('monitor_id', 20);
             $table->string('message');
