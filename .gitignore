@@ -13,3 +13,4 @@ npm-debug.log
 yarn-error.log
 ecsongs.code-workspace
 public_html/vendor/*
+.DS_Store
