@@ -6,7 +6,7 @@ use AscentCreative\JobMonitor\Models\JobUpdate;
 
 trait Monitorable {
 
-    private $_monitor_id = null;
+    protected $_monitor_id = null;
 
 
     public function startMonitor($total=100, $unit='%') {
