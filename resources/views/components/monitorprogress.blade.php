@@ -90,6 +90,10 @@
 
                 last_sub = data.sub_percent_complete;
                 
+            } else {
+
+                 $('.sub-progress').hide();
+
             }
            
 
