@@ -1,4 +1,4 @@
-@extends('cms::modal')
+{{-- @extends('cms::modal')
 
 @php
     $modalFade = false;
@@ -7,6 +7,7 @@
     $modalCenterVertical = false;
     //$modalSize = "modal-lg";
     $modalCloseButton = false;
+    $back
 @endphp
 
 @section('modalTitle')
@@ -22,7 +23,25 @@
         
     </div>
 
-@endsection
+@endsection --}}
+
+<x-cms-modal modalId="ajaxModal" size="sm"
+    :backdropclose="false" :closebutton="false" :keyboardclose="false"
+    :showHeader="true" :showFooter="false" :fade="false"
+
+    >
+
+    <x-slot name="title">
+        {{ $job_title ?? "Progress"}}
+    </x-slot>
+
+    <div class="working">    
+
+        <x-jobmonitor-progress monitorid="{{ $monitor_id }}" freq="{{ $freq ?? 500 }}" />
+        
+    </div>
+
+</x-cms-modal>
 
 
 
